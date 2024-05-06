@@ -239,20 +239,19 @@ public class Matrices {
          */
         public Matrix multiply(Matrix other) {
             int[][] otherRows = other.rows;
-            if (otherRows.length != this.rows.length) {
-                throw new IllegalArgumentException("Матрицы должны иметь одинаковую размерность");
+            if (this.nCols != other.nRows) {
+                throw new IllegalArgumentException("Матрицы невозможно умножить");
             }
-
             int[][] result = new int[this.rows.length][];
-
             for(int iRow = 0; iRow < this.rows.length; iRow++) {
-                // Вначале сверка по длине строки (для каждой строки на всякий случай)
-                if (otherRows[iRow].length != this.rows[iRow].length) {
-                    throw new IllegalArgumentException("Матрицы должны иметь одинаковую размерность");
-                }
                 int[] resultRow = new int[this.rows[iRow].length]; //Для результирующей строки
                 for(int iCol = 0; iCol < this.rows[iRow].length; iCol++) {
-                    resultRow[iCol] = this.rows[iRow][iCol] * otherRows[iRow][iCol];
+                    // Вычисляем требуемый элемент
+                    int elemResult = 0 ;
+                    for (int iRes = 0; iRes < this.rows[iRow].length; iRes++ ){
+                        elemResult = elemResult +  this.rows[iRow][iRes] * otherRows[iRes][iCol];
+                    }
+                    resultRow[iCol] = elemResult ;
                 }
                 result[iRow] = resultRow;
             }
