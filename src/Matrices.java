@@ -248,7 +248,7 @@ public class Matrices {
                 for(int iCol = 0; iCol < this.rows[iRow].length; iCol++) {
                     // Вычисляем требуемый элемент
                     int elemResult = 0 ;
-                    for (int iRes = 0; iRes < this.rows[iRow].length; iRes++ ){
+                    for (int iRes = 0; iRes < rows[iRow].length; iRes++ ){
                         elemResult = elemResult +  this.rows[iRow][iRes] * otherRows[iRes][iCol];
                     }
                     resultRow[iCol] = elemResult ;
